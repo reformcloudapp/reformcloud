@@ -43,7 +43,7 @@ public class DatabaseMySQLAddonUpdater extends DefaultApplicationUpdateRepositor
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/database-mysql/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/database-mysql/"
                 + this.newVersion
                 + "/database-mysql-"
                 + this.newVersion

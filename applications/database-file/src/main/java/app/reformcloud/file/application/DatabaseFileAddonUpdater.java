@@ -43,7 +43,7 @@ public class DatabaseFileAddonUpdater extends DefaultApplicationUpdateRepository
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/database-file/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/database-file/"
                 + this.newVersion
                 + "/database-file-"
                 + this.newVersion

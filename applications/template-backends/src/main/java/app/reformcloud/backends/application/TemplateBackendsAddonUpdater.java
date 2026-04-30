@@ -43,7 +43,7 @@ public class TemplateBackendsAddonUpdater extends DefaultApplicationUpdateReposi
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/template-backends/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/template-backends/"
                 + this.newVersion
                 + "/template-backends-"
                 + this.newVersion

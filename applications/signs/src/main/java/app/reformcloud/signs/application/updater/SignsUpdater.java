@@ -68,7 +68,7 @@ public class SignsUpdater extends DefaultApplicationUpdateRepository {
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/signs/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/signs/"
                 + this.newVersion
                 + "/signs-"
                 + this.newVersion

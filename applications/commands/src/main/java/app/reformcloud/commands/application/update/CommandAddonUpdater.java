@@ -68,7 +68,7 @@ public class CommandAddonUpdater extends DefaultApplicationUpdateRepository {
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/commands/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/commands/"
                 + this.newVersion
                 + "/commands-"
                 + this.newVersion

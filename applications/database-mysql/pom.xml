@@ -20,7 +20,7 @@
         <pluginRepository>
             <id>astralbe-repository-releases</id>
             <name>AstralBE Repository</name>
-            <url>http://repo.astralbe.net/releases</url>
+            <url>https://repo.astralbe.net/releases</url>
         </pluginRepository>
     </pluginRepositories>
 

@@ -43,7 +43,7 @@ public class DatabaseMongoAddonUpdater extends DefaultApplicationUpdateRepositor
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/database-mongo/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/database-mongo/"
                 + this.newVersion
                 + "/database-mongo-"
                 + this.newVersion

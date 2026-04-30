@@ -68,7 +68,7 @@ public class ProxyAddonUpdater extends DefaultApplicationUpdateRepository {
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/proxy/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/proxy/"
                 + this.newVersion
                 + "/proxy-"
                 + this.newVersion

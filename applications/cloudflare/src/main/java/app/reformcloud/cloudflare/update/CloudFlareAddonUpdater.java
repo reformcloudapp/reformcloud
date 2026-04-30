@@ -73,7 +73,7 @@ public class CloudFlareAddonUpdater extends DefaultApplicationUpdateRepository {
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/cloudflare/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/cloudflare/"
                 + this.newVersion
                 + "/cloudflare-"
                 + this.newVersion

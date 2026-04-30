@@ -43,7 +43,7 @@ public class DatabaseRethinkAddonUpdater extends DefaultApplicationUpdateReposit
         }
 
         String identifier = this.newVersion.endsWith("-dev") ? "snapshots" : "releases";
-        String url = "http://repo.astralbe.net/" + identifier + "/app/reformcloud/database-rethink/"
+        String url = "https://repo.astralbe.net/" + identifier + "/app/reformcloud/database-rethink/"
                 + this.newVersion
                 + "/database-rethink-"
                 + this.newVersion

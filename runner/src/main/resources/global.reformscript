@@ -37,7 +37,7 @@ PRINTLN
 # VARIABLE reformcloud.runner.version=1.0.0-pre.1-dev
 
 # Default enabled system env variables (if you want to unset them write '# ' in front of the line)
-VARIABLE reformcloud.indev.build.url=http://repo.astralbe.net/snapshots/app/reformcloud/node/%version%/node-%version%.jar
+VARIABLE reformcloud.indev.build.url=https://repo.astralbe.net/snapshots/app/reformcloud/node/%version%/node-%version%.jar
 VARIABLE reformcloud.version.url=https://raw.githubusercontent.com/reformcloudapp/reformcloud/master/version.properties
 VARIABLE reformcloud.auto.update=true
 

@@ -109,12 +109,12 @@ mvn clean package
     <repository>
         <id>astralbe-repository-releases</id>
         <name>AstralBE Repository</name>
-        <url>http://repo.astralbe.net/releases</url>
+        <url>https://repo.astralbe.net/releases</url>
     </repository>
     <repository>
         <id>astralbe-repository-snapshots</id>
         <name>AstralBE Repository</name>
-        <url>http://repo.astralbe.net/snapshots</url>
+        <url>https://repo.astralbe.net/snapshots</url>
     </repository>
 ```
 

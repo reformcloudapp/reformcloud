@@ -29,9 +29,9 @@ jobs:
         id: repo
         run: | 
           if [[ "${GITHUB_REF_NAME}" == *"-dev" ]]; then
-            echo "repo_url=http://repo.astralbe.net/snapshots" >> $GITHUB_OUTPUT 
+            echo "repo_url=https://repo.astralbe.net/snapshots" >> $GITHUB_OUTPUT 
           else
-            echo "repo_url=http://repo.astralbe.net/releases" >> $GITHUB_OUTPUT 
+            echo "repo_url=https://repo.astralbe.net/releases" >> $GITHUB_OUTPUT 
           fi
 
       - name: Configure settings for reposilite
