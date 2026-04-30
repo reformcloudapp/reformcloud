@@ -1,0 +1,7 @@
+{
+  "name": "TemplateBackendApplication",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.backends.TemplateBackendApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

@@ -1,0 +1,18 @@
+name: 'ReformCloudSigns'
+author: 'reformcloudapp'
+version: '${project.version}'
+main: app.reformcloud.signs.nukkit.NukkitPlugin
+
+load: STARTUP
+
+api: [ '1.0.0' ]
+depend:
+  - ReformCloudNukkitExecutor
+
+commands:
+  signs:
+    description: Manage signs
+
+# Additional
+website: 'https://reformcloud.app'
+description: 'The reformcloud sign plugin'

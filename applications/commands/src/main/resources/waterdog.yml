@@ -1,0 +1,6 @@
+name: 'ReformCloudWaterDogCommands'
+version: '${project.version}'
+author: 'reformcloudapp'
+main: app.reformcloud.commands.plugin.waterdog.WaterDogPlugin
+depends:
+  - ReformCloudWaterDogExecutor

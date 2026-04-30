@@ -1,0 +1,102 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '23'
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+
+      - name: Determine Reposilite repository
+        id: repo
+        run: | 
+          if [[ "${GITHUB_REF_NAME}" == *"-dev" ]]; then
+            echo "repo_url=http://repo.astralbe.net/snapshots" >> $GITHUB_OUTPUT 
+          else
+            echo "repo_url=http://repo.astralbe.net/releases" >> $GITHUB_OUTPUT 
+          fi
+
+      - name: Configure settings for reposilite
+        uses: s4u/maven-settings-action@v4.0.0
+        with:
+          servers: |
+            [{
+              "id": "astralbe-repository",
+              "username": "${{ secrets.REPOSILITE_USERNAME }}",
+              "password": "${{ secrets.REPOSILITE_PASSWORD }}"
+            }]
+
+      - name: Deploy to Reposilite
+        run: mvn deploy -DskipTests=true --batch-mode -DaltDeploymentRepository=ps-repo::default::${{ steps.repo.outputs.repo_url }}
+        env:
+          MAVEN_USERNAME: ${{ secrets.REPOSILITE_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.REPOSILITE_PASSWORD }}
+          REPO_URL: ${{ steps.repo.outputs.repo_url }}
+
+      - name: Collect and zip all application JARs
+        run: |
+          mkdir -p applications-artifacts
+          find applications -path "*/target/*.jar" -exec cp {} applications-artifacts/ \;
+          cd applications-artifacts
+          zip -r ../applications.zip .
+          cd ..
+
+      - name: Upload applications zip
+        uses: actions/upload-artifact@v6
+        with:
+          name: applications
+          path: applications.zip
+
+      - name: Collect and zip all plugin JARs
+        run: |
+          mkdir -p plugins-artifacts
+          find plugins -path "*/target/*.jar" -exec cp {} plugins-artifacts/ \;
+          cd plugins-artifacts
+          zip -r ../plugins.zip .
+          cd ..
+
+      - name: Upload plugins zip
+        uses: actions/upload-artifact@v6
+        with:
+          name: plugins
+          path: plugins.zip
+
+      - name: Create folder for cloud artifacts
+        run: |
+          mkdir -p cloud-artifacts
+          cp node/target/executor.jar cloud-artifacts/
+          cp runner/target/runner.jar cloud-artifacts/
+
+      - name: Upload cloud artifacts as artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: Cloud
+          path: cloud-artifacts
+
+      - name: Create GitHub Release and upload artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            cloud-artifacts/*.jar
+            applications.zip
+            plugins.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

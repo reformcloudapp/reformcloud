@@ -1,0 +1,7 @@
+{
+  "name": "ExampleApplication",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.examples.ExampleApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

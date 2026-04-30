@@ -1,0 +1,7 @@
+{
+  "name": "ProxyAddon",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.proxy.application.ProxyApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

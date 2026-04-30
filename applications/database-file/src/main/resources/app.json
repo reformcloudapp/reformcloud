@@ -1,0 +1,7 @@
+{
+  "name": "FileDatabase",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.file.FileDatabase",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

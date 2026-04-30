@@ -1,0 +1,62 @@
+/*
+ * This file is part of reformcloud, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) ReformCloud <https://github.com/reformcloudapp>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package app.reformcloud.event.priority;
+
+public enum EventPriority {
+    /**
+     * Methods annotated with this priority will get called first.
+     */
+    FIRST((byte) -64),
+    /**
+     * Methods annotated with this priority will get called secondly.
+     */
+    SECOND((byte) -32),
+    /**
+     * Methods annotated with this priority will get called third.
+     */
+    MONITOR((byte) -1),
+    /**
+     * Methods annotated with this priority will get called fourth.
+     */
+    NORMAL((byte) 0),
+    /**
+     * Methods annotated with this priority will get called fifth.
+     */
+    PENULTIMATE((byte) 32),
+    /**
+     * Methods annotated with this priority will get called sixth.
+     */
+    LAST((byte) 64);
+
+    private final byte priority;
+
+    EventPriority(byte priorityInJava) {
+        this.priority = priorityInJava;
+    }
+
+    public byte getPriority() {
+        return this.priority;
+    }
+}

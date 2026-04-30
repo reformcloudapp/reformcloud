@@ -1,0 +1,7 @@
+{
+  "name": "CommandAddon",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.commands.application.ReformCloudApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

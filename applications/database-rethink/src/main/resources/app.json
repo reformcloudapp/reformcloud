@@ -1,0 +1,7 @@
+{
+  "name": "RethinkDatabase",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.rethink.RethinkApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

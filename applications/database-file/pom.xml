@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>applications</artifactId>
+        <groupId>app.reformcloud</groupId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>database-file</artifactId>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>astralbe-repository-releases</id>
+            <name>AstralBE Repository</name>
+            <url>http://repo.astralbe.net/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>astralbe-repository-releases</id>
+            <name>AstralBE Repository</name>
+            <url>http://repo.astralbe.net/releases</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>app.reformcloud</groupId>
+            <artifactId>node</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>app.reformcloud.projects.deer</groupId>
+            <artifactId>project-deer-api</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>app.reformcloud.projects.deer</groupId>
+            <artifactId>project-deer-executor</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>app.reformcloud.dependencylist</groupId>
+                <artifactId>dependency-list-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <excludedScopes>
+                        <excludedScope>test</excludedScope>
+                        <excludedScope>compile</excludedScope>
+                    </excludedScopes>
+
+                    <excludes>
+                        <exclude>app.reformcloud:*</exclude>
+                        <exclude>com.google.code.gson:*</exclude>
+                        <exclude>org.jetbrains:*</exclude>
+                    </excludes>
+
+                    <outputFileName>${basedir}/src/main/resources/dependencies.txt</outputFileName>
+
+                    <overrideExistingFile>true</overrideExistingFile>
+                    <resolveDependenciesOfDependencies>true</resolveDependenciesOfDependencies>
+                    <includeOptionalDependencies>false</includeOptionalDependencies>
+                    <createParentFiles>true</createParentFiles>
+                    <outputFormat>{5}=>{4} {0}:{1}:{2}</outputFormat>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>dependency-list</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>23</source>
+                    <target>23</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

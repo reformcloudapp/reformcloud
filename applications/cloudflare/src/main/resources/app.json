@@ -1,0 +1,7 @@
+{
+  "name": "CloudFlareAddon",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.cloudflare.ReformCloudApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

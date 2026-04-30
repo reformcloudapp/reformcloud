@@ -1,0 +1,10 @@
+name: 'ReformCloudNukkitExecutor'
+author: 'reformcloudapp'
+version: '${project.version}'
+main: app.reformcloud.embedded.plugin.nukkit.NukkitLauncher
+api: [ '1.0.0' ]
+
+load: STARTUP
+# Additional
+website: 'https://reformcloud.app'
+description: 'The reformcloud executor api'

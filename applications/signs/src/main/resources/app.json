@@ -1,0 +1,7 @@
+{
+  "name": "SignAddon",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.signs.application.ReformCloudApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

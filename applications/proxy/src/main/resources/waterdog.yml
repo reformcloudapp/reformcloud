@@ -1,0 +1,6 @@
+name: 'ReformCloudWaterDogProxy'
+version: '${project.version}'
+author: 'reformcloudapp'
+main: app.reformcloud.proxy.waterdog.WaterDogPlugin
+depends:
+  - ReformCloudWaterDogExecutor

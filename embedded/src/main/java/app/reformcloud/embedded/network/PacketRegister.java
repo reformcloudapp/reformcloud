@@ -1,0 +1,106 @@
+/*
+ * This file is part of reformcloud, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) ReformCloud <https://github.com/reformcloudapp>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package app.reformcloud.embedded.network;
+
+import org.jetbrains.annotations.NotNull;
+import app.reformcloud.ExecutorAPI;
+import app.reformcloud.network.PacketIds;
+import app.reformcloud.network.packet.PacketProvider;
+import app.reformcloud.protocol.api.*;
+import app.reformcloud.protocol.node.*;
+import app.reformcloud.protocol.shared.*;
+
+final class PacketRegister {
+
+    private PacketRegister() {
+        throw new AssertionError("You should not instantiate this class");
+    }
+
+    static void preAuth() {
+        getPacketProvider().registerPacket(PacketAuthSuccess.class);
+    }
+
+    static void postAuth() {
+        PacketProvider packetProvider = getPacketProvider();
+
+        // unregister auth packet
+        packetProvider.unregisterPacket(PacketIds.AUTH_BUS + 1);
+
+        // api -> node query result packets
+        packetProvider.registerPacket(ApiToNodeCreateMainGroupResult.class);
+        packetProvider.registerPacket(ApiToNodeCreateProcessGroupResult.class);
+        packetProvider.registerPacket(ApiToNodeGetAllTableEntriesResult.class);
+        packetProvider.registerPacket(ApiToNodeGetCurrentPlayerProcessUniqueIdsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetDatabaseDocumentResult.class);
+        packetProvider.registerPacket(ApiToNodeGetDatabaseEntryCountResult.class);
+        packetProvider.registerPacket(ApiToNodeGetDatabaseNamesResult.class);
+        packetProvider.registerPacket(ApiToNodeGetIngameMessagesResult.class);
+        packetProvider.registerPacket(ApiToNodeGetMainGroupCountResult.class);
+        packetProvider.registerPacket(ApiToNodeGetMainGroupObjectsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetMainGroupResult.class);
+        packetProvider.registerPacket(ApiToNodeGetNodeInformationResult.class);
+        packetProvider.registerPacket(ApiToNodeGetNodeNamesResult.class);
+        packetProvider.registerPacket(ApiToNodeGetNodeObjectsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetNodeUniqueIdsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetPlayerUniqueIdFromNameResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessCountResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessGroupCountResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessGroupObjectsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessGroupResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessInformationObjectsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessInformationResult.class);
+        packetProvider.registerPacket(ApiToNodeGetProcessUniqueIdsResult.class);
+        packetProvider.registerPacket(ApiToNodeGetStringCollectionResult.class);
+        packetProvider.registerPacket(ApiToNodeGetTableEntryNamesResult.class);
+        packetProvider.registerPacket(ApiToNodeHasTableDocumentResult.class);
+        packetProvider.registerPacket(ApiToNodeIsNodePresentResult.class);
+        packetProvider.registerPacket(ApiToNodeIsPlayerOnlineResult.class);
+        packetProvider.registerPacket(ApiToNodeUploadProcessLogResult.class);
+
+        // node -> api
+        packetProvider.registerPacket(NodeToApiMainGroupCreate.class);
+        packetProvider.registerPacket(NodeToApiMainGroupDelete.class);
+        packetProvider.registerPacket(NodeToApiMainGroupUpdated.class);
+        packetProvider.registerPacket(NodeToApiProcessGroupCreate.class);
+        packetProvider.registerPacket(NodeToApiProcessGroupDelete.class);
+        packetProvider.registerPacket(NodeToApiProcessGroupUpdated.class);
+        packetProvider.registerPacket(NodeToApiProcessRegister.class);
+        packetProvider.registerPacket(NodeToApiProcessUnregister.class);
+        packetProvider.registerPacket(NodeToApiProcessUpdated.class);
+        packetProvider.registerPacket(NodeToApiRequestProcessInformationUpdate.class);
+
+        // node <-> api (shared packets)
+        packetProvider.registerPacket(PacketChannelMessage.class);
+        packetProvider.registerPacket(PacketConnectPlayerToServer.class);
+        packetProvider.registerPacket(PacketDisconnectPlayer.class);
+        packetProvider.registerPacket(PacketSendPlayerMessage.class);
+        packetProvider.registerPacket(PacketSendPlayerTitle.class);
+    }
+
+    @NotNull
+    private static PacketProvider getPacketProvider() {
+        return ExecutorAPI.getInstance().getServiceRegistry().getProviderUnchecked(PacketProvider.class);
+    }
+}

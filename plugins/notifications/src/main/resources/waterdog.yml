@@ -1,0 +1,6 @@
+name: 'ReformCloudWaterdogNotifications'
+version: '${project.version}'
+author: 'reformcloudapp'
+main: app.reformcloud.notifications.waterdog.WaterdogPlugin
+depend:
+  - ReformCloudWaterdogExecutor

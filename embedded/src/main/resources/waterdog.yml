@@ -1,0 +1,4 @@
+name: 'ReformCloudWaterDogExecutor'
+version: '${project.version}'
+author: 'reformcloudapp'
+main: app.reformcloud.embedded.plugin.waterdog.WaterDogLauncher

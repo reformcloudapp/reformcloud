@@ -1,0 +1,71 @@
+# Represents the global execution script for the reformcloud runner
+# Modify this file only if you are able to use reform script
+# Do not remove something from this file it might be required for the workflow to run
+
+# Header printing
+PRINTLN
+PRINTLN  ______ _______ _______  _____   ______ _______ _______         _____  _     _ ______
+PRINTLN |_____/ |______ |______ |     | |_____/ |  |  | |       |      |     | |     | |     \
+PRINTLN |    \_ |______ |       |_____| |    \_ |  |  | |_____  |_____ |_____| |_____| |_____/ ref: _%_git_commit_%_
+PRINTLN
+PRINTLN                   Not just a cloud system, but an experience.
+PRINTLN
+
+# Default disabled system env variables (if you want to use them remove '# ' from the front of the line)
+# VARIABLE reformcloud.dev.mode=true
+# VARIABLE reformcloud.lib.path=.
+# VARIABLE reformcloud.disable.native=true
+# VARIABLE reformcloud.executor.debug=true
+# VARIABLE reformcloud.runner.debug=true
+# VARIABLE reformcloud.disable.colours=true
+# VARIABLE reformcloud.indev.builds=true
+# VARIABLE reformcloud.application-directory=reformcloud/applications
+# VARIABLE reformcloud.language-code=en
+# VARIABLE reformcloud.main-group-dir=reformcloud/groups/main
+# VARIABLE reformcloud.sub-group-dir=reformcloud/groups/sub
+# VARIABLE reformcloud.node-config-path=reformcloud/config.json
+# VARIABLE reformcloud.console-prompt-pattern=[&crc&7-&b{0}&7@&b{1} &f~&r]$
+# VARIABLE reformcloud.h2-db-path=reformcloud/.database/h2/h2_db
+# VARIABLE reformcloud.console-log-file=logs/cloud.log
+# VARIABLE reformcloud.console-log-level=ALL
+# VARIABLE reformcloud.log-date-format=dd.MM.yyyy kk:mm:ss
+# VARIABLE reformcloud.logging-excluded-line-starts=SLF4J:
+# VARIABLE reformcloud.process.path=reformcloud/.bin/executor.jar
+# VARIABLE reformcloud.version.url=https://raw.githubusercontent.com/reformcloudapp/reformcloud/master/version.properties
+# VARIABLE reformcloud.debug-net=false
+# VARIABLE app.reformcloud.IKnownWhatIDid=false
+# VARIABLE reformcloud.runner.version=1.0.0-pre.1-dev
+
+# Default enabled system env variables (if you want to unset them write '# ' in front of the line)
+VARIABLE reformcloud.indev.build.url=http://repo.astralbe.net/snapshots/app/reformcloud/node/%version%/node-%version%.jar
+VARIABLE reformcloud.version.url=https://raw.githubusercontent.com/reformcloudapp/reformcloud/master/version.properties
+VARIABLE reformcloud.auto.update=true
+
+# Check if env is defined
+IF _%_env_set_%_ THEN() OR(EXECUTE:checkIfSetupRequired())
+
+# Write env to file and check for updates if required
+IF _%_env_not_api_%_ THEN(CHECK_FOR_UPDATES) OR()
+
+# Check if dev mode is enabled and apply updates if needed
+CHECK_IF_DEV_MODE
+
+# Checks if it's needed to apply snapshot builds
+CHECK_IF_SNAPSHOT_APPLY
+
+# Set the required system properties for the application to run
+SET_SYSTEM_PROPERTIES
+
+# Finally start the application
+START_APPLICATION
+
+# Check if setup is required
+TASK checkIfSetupRequired()
+TASK IF _%_setup_required_%_ THEN(EXECUTE:startSetup()) OR()
+TASK END
+
+# Executes the setup for the runner
+TASK startSetup()
+TASK WRITE_ENV
+TASK UNPACK_APPLICATION
+TASK END

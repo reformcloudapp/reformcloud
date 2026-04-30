@@ -1,0 +1,57 @@
+/*
+ * This file is part of reformcloud, licensed under the MIT License (MIT).
+ *
+ * Copyright (c) ReformCloud <https://github.com/reformcloudapp>
+ * Copyright (c) contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package app.reformcloud.command;
+
+import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
+import app.reformcloud.utility.name.Nameable;
+
+/**
+ * A sender for a {@link Command} which can receive messages.
+ */
+public interface CommandSender extends Nameable {
+
+    /**
+     * Sends a message to this sender.
+     *
+     * @param message The message to send.
+     */
+    void sendMessage(@NotNull String message);
+
+    /**
+     * Sends the messages to this sender.
+     *
+     * @param messages The messages to send.
+     */
+    void sendMessages(@NonNls String[] messages);
+
+    /**
+     * Checks if this sender has the provided {@code permission}.
+     *
+     * @param permission The permission to check.
+     * @return {@code true} if the sender has the given permission, else {@code false}
+     */
+    boolean hasPermission(@NotNull String permission);
+}

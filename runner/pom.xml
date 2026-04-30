@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>reformcloud-parent</artifactId>
+        <groupId>app.reformcloud</groupId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>runner</artifactId>
+
+    <build>
+        <finalName>runner</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- transformers -->
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Premain-Class>
+                                            app.reformcloud.runner.instrumentation.RunnerPremain
+                                        </Premain-Class>
+                                        <Main-Class>app.reformcloud.runner.RunnerExecutor
+                                        </Main-Class>
+                                        <Version>${project.version}</Version>
+                                        <Implementation-Version>${project.version}
+                                        </Implementation-Version>
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <Specification-Version>${describe}</Specification-Version>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <!-- filters -->
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+
+                        <!-- Copies the final executor file to the resource directory -->
+                        <configuration>
+                            <failOnError>false</failOnError>
+                            <target name="copy node">
+                                <copy
+                                        file="${basedir}/../node/target/executor.jar"
+                                        tofile="${basedir}/src/main/resources/files/executor.jar"
+                                />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

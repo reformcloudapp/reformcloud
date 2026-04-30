@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>applications</artifactId>
+        <groupId>app.reformcloud</groupId>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>template-backends</artifactId>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>astralbe-repository-releases</id>
+            <name>AstralBE Repository</name>
+            <url>http://repo.astralbe.net/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>app.reformcloud</groupId>
+            <artifactId>node</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.hierynomus/sshj -->
+        <dependency>
+            <groupId>com.hierynomus</groupId>
+            <artifactId>sshj</artifactId>
+            <version>0.40.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>2.0.17</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.12.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>app.reformcloud.dependencylist</groupId>
+                <artifactId>dependency-list-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <excludedScopes>
+                        <excludedScope>test</excludedScope>
+                        <excludedScope>compile</excludedScope>
+                    </excludedScopes>
+
+                    <excludes>
+                        <exclude>app.reformcloud:*</exclude>
+                        <exclude>*:gson</exclude>
+                        <exclude>org.jetbrains:*</exclude>
+                    </excludes>
+
+                    <outputFileName>${basedir}/src/main/resources/dependencies.txt</outputFileName>
+
+                    <overrideExistingFile>true</overrideExistingFile>
+                    <resolveDependenciesOfDependencies>true</resolveDependenciesOfDependencies>
+                    <includeOptionalDependencies>false</includeOptionalDependencies>
+                    <createParentFiles>true</createParentFiles>
+                    <outputFormat>{5}=>{4} {0}:{1}:{2}</outputFormat>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>dependency-list</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,7 @@
+{
+  "name": "MySQLDatabase",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.mysql.MySQLApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}

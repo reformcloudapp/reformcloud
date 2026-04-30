@@ -1,0 +1,7 @@
+{
+  "name": "MongoDatabase",
+  "author": "reformcloudapp",
+  "main": "app.reformcloud.mongo.MongoApplication",
+  "version": "${project.version}",
+  "impl-version": "${project.version}"
+}
