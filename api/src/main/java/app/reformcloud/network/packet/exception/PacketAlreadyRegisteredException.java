@@ -24,8 +24,11 @@
  */
 package app.reformcloud.network.packet.exception;
 
+import java.io.Serial;
+
 public class PacketAlreadyRegisteredException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 4583959756540765602L;
 
     public PacketAlreadyRegisteredException(String packetName, String otherPacketName, int id) {
