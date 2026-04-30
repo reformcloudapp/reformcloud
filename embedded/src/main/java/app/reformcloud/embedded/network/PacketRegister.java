@@ -45,9 +45,6 @@ final class PacketRegister {
     static void postAuth() {
         PacketProvider packetProvider = getPacketProvider();
 
-        // unregister auth packet
-        packetProvider.unregisterPacket(PacketIds.AUTH_BUS + 1);
-
         // api -> node query result packets
         packetProvider.registerPacket(ApiToNodeCreateMainGroupResult.class);
         packetProvider.registerPacket(ApiToNodeCreateProcessGroupResult.class);
