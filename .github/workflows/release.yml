@@ -45,7 +45,7 @@ jobs:
             }]
 
       - name: Deploy to Reposilite
-        run: mvn deploy -DskipTests=true --batch-mode -DaltDeploymentRepository=ps-repo::default::${{ steps.repo.outputs.repo_url }}
+        run: mvn deploy -DskipTests=true --batch-mode -DaltDeploymentRepository=astralbe-repository::default::${{ steps.repo.outputs.repo_url }}
         env:
           MAVEN_USERNAME: ${{ secrets.REPOSILITE_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.REPOSILITE_PASSWORD }}
