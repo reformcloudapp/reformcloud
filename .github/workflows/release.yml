@@ -60,7 +60,7 @@ jobs:
           cd ..
 
       - name: Upload applications zip
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: applications
           path: applications.zip
@@ -74,7 +74,7 @@ jobs:
           cd ..
 
       - name: Upload plugins zip
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: plugins
           path: plugins.zip
@@ -86,7 +86,7 @@ jobs:
           cp runner/target/runner.jar cloud-artifacts/
 
       - name: Upload cloud artifacts as artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Cloud
           path: cloud-artifacts
